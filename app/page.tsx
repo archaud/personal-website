@@ -24,11 +24,11 @@ export default function HomePage() {
           <ul className="space-y-4">
             <li className="border dark:border-gray-700 p-4 rounded-xl shadow-sm bg-white dark:bg-gray-800">
               <h3 className="text-xl font-medium dark:text-white">Project One</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">A short description of your project.</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Coming soon.</p>
             </li>
             <li className="border dark:border-gray-700 p-4 rounded-xl shadow-sm bg-white dark:bg-gray-800">
               <h3 className="text-xl font-medium dark:text-white">Project Two</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Another project to showcase.</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Coming soon.</p>
             </li>
           </ul>
         </section>
