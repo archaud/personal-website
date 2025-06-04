@@ -1,26 +1,34 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import dynamic from 'next/dynamic';
+
+const SpotifyNowPlaying = dynamic(() => import('./components/SpotifyNowPlaying'), {
+  ssr: false,
+});
 
 // This is the main homepage component
-export default function HomePage() {
+export default function Home() {
   return (
     <main className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-8 transition-colors">
       <section className="max-w-3xl mx-auto">
         {/* Header section with title and description */}
         <header className="mb-16">
-          <h1 className="text-4xl font-bold mb-2 text-blue-600 dark:text-blue-400 font-space-grotesk">Hi, I'm Arun</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 font-space-grotesk">[insert here]</p>
+          <h1 className="text-4xl font-bold mb-2 text-blue-600 dark:text-blue-400">Hi, I'm Arun</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300">[insert here]</p>
         </header>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">About Me</h2>
           <ul className="space-y-4">
-            <p className="text-lg text-gray-600 dark:text-gray-300 font-space-grotesk">Go Bills & eating chicken wings</p>
+            <p className="text-lg text-gray-600 dark:text-gray-300">Go Bills & eating chicken wings</p>
           </ul>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4 font-space-grotesk dark:text-white">Projects & Experiences</h2>
+          <h2 className="text-2xl font-semibold mb-4">Now Playing</h2>
+          <SpotifyNowPlaying />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4 dark:text-white">Projects & Experiences</h2>
           <ul className="space-y-4">
             <li className="border dark:border-gray-700 p-4 rounded-xl shadow-sm bg-white dark:bg-gray-800">
               <h3 className="text-xl font-medium dark:text-white">Project One</h3>
