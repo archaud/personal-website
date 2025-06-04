@@ -59,7 +59,11 @@ export default function Home() {
           <section className="mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4">About Me</h2>
             <ul className="space-y-4">
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">Go Bills & eating chicken wings</p>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">Currently living in NYC and working in crypto.
+                <br /> Love the Bills and eating chicken wings.
+                <br />
+                Building out <a href="https://www.competi.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Competi</a>
+              </p>
             </ul>
           </section>
 
