@@ -8,6 +8,13 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Add smooth theme transition */
+  *,
+  *::before,
+  *::after {
+    transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  }
 }
 
 :root {
