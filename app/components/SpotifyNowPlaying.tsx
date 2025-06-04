@@ -26,11 +26,6 @@ export default function SpotifyNowPlaying() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [timeAgo, setTimeAgo] = useState<number>(0);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const fetchNowPlaying = useCallback(async () => {
     try {
@@ -106,10 +101,6 @@ export default function SpotifyNowPlaying() {
     return () => clearInterval(interval);
   }, [lastUpdated]);
 
-  if (!isMounted) {
-    return null;
-  }
-
   if (loading && !track) {
     return (
       <div className="animate-pulse flex items-center space-x-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
@@ -123,7 +114,7 @@ export default function SpotifyNowPlaying() {
   }
 
   return (
-    <div className={`transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-98' : 'opacity-100 scale-100'}`}>
+    <div className={`transition-opacity duration-500 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
       {error && !track ? (
         <div className="flex items-center space-x-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
           <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,13 +127,13 @@ export default function SpotifyNowPlaying() {
           href={track.item.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center space-x-2 p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-500 ease-in-out"
+          className="flex items-center space-x-2 p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-500 ease-in-out"
         >
           {track.item.album.images[0] && (
             <img
               src={track.item.album.images[0].url}
               alt={`${track.item.album.name} album art`}
-              className="w-10 h-10 rounded shadow-sm transition-all duration-500 ease-in-out hover:scale-105"
+              className="w-10 h-10 rounded shadow-sm"
             />
           )}
           <div className="flex-1 min-w-0">
