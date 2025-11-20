@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import LoadingScreen from './components/LoadingScreen';
 import { useTheme } from './components/ThemeProvider';
+import Link from 'next/link'
 
 const SpotifyNowPlaying = dynamic(() => import('./components/SpotifyNowPlaying'), {
   ssr: false,
@@ -91,26 +92,23 @@ export default function Home() {
           <section className="mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4">About Me</h2>
             <ul className="space-y-4">
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">Currently living in NYC and working in crypto.
-                <br /> Love the Bills and eating chicken wings.
-                <br />
-                Building out <a href="https://www.competi.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Competi</a>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">Living in NYC and working in crypto.
+                <br /> Love the Bills and <a href="https://www.instagram.com/nycwingtrail/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">chicken wings</a>
+                .<br />
+                Spend my free time exploring restaurants, traveling, and trying new beers.
               </p>
             </ul>
           </section>
 
           <section className="mb-8 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-semibold mb-4 dark:text-white">Projects & Experiences</h2>
-            <ul className="space-y-4">
-              <li className="border dark:border-gray-700 p-3 sm:p-4 rounded-xl shadow-sm bg-white dark:bg-gray-800">
-                <h3 className="text-lg sm:text-xl font-medium dark:text-white">Project One</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Coming soon.</p>
-              </li>
-              <li className="border dark:border-gray-700 p-3 sm:p-4 rounded-xl shadow-sm bg-white dark:bg-gray-800">
-                <h3 className="text-lg sm:text-xl font-medium dark:text-white">Project Two</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Coming soon.</p>
-              </li>
-            </ul>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 dark:text-white">Experiences</h2>
+            <div className="space-y-2 text-base sm:text-lg text-gray-600 dark:text-gray-300">
+              <p>Currently cooking on prediction markets with <a href="https://www.competi.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Competi</a>.</p>
+              <p>Got into crypto working with <a href="https://npcgroup.xyz/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">NPC Group</a> (Polygon Labs)
+                and <a href="https://bharvest.io/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">B-Harvest</a>.</p>
+              <p>Before crypto was on product teams at AMEX and Apple.</p>
+              <p>Learned how to have fun at Cornell University.</p>
+            </div>
           </section>
 
           {/* Footer section with social media links and Spotify widget */}
@@ -148,6 +146,36 @@ export default function Home() {
                       <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
                     </svg>
                   </a>
+
+                  <a
+                    href="https://arunchaudhuri.substack.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block hover:opacity-80 transition-opacity"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-6 sm:h-8 w-6 sm:w-8 fill-current text-gray-600 dark:text-gray-400 hover:text-[#FF6719] dark:hover:text-[#FF6719]"
+                      aria-hidden="true"
+                    >
+                      <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24h21.08V10.812H1.46zm2.836 2.836h2.836v1.418H4.296v-1.418zm5.672 0h2.836v1.418H9.968v-1.418zm5.672 0h2.836v1.418h-2.836v-1.418zM1.46 3.988V0h21.08v3.988H1.46z" />
+                    </svg>
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/arunabh-chaudhuri/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block hover:opacity-80 transition-opacity"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-6 sm:h-8 w-6 sm:w-8 fill-current text-gray-600 dark:text-gray-400 hover:text-[#0077B5] dark:hover:text-[#0077B5]"
+                      aria-hidden="true"
+                    >
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                  </a>
                 </div>
               </div>
               <div className="w-full sm:w-64">
@@ -158,6 +186,6 @@ export default function Home() {
           </footer>
         </section>
       </main>
-    </div>
+    </div >
   );
 }

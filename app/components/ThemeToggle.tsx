@@ -8,11 +8,11 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="fixed top-4 right-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-800 transition-colors"
+      className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
       aria-label="Toggle dark mode"
     >
       {isDarkMode ? (
-        <svg className="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -21,7 +21,7 @@ export function ThemeToggle() {
           />
         </svg>
       ) : (
-        <svg className="w-6 h-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-5 h-5 text-gray-900 dark:text-gray-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
