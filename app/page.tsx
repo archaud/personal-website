@@ -74,7 +74,7 @@ export default function Home() {
               {/* Header section with title and description */}
               <header className="mb-8 sm:mb-16">
                 <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-600 dark:text-gray-400">Hi, I'm Arun</h1>
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">Go Bills</p>
+                <p className="text-base sm:text-lg text-gray-400 dark:text-gray-500 italic">lets chat: <a href="mailto:chaudhuri.arunabh@gmail.com" className="underline hover:no-underline">email</a> / <a href="https://calendly.com/arun-npcgroup/30min" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">find time</a></p>
               </header>
             </div>
             <div className="transition-opacity duration-500 ease-in-out" style={{ opacity: isMounted ? 1 : 0 }}>
@@ -93,7 +93,7 @@ export default function Home() {
             <h2 className="text-xl sm:text-2xl font-semibold mb-4">About Me</h2>
             <ul className="space-y-4">
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">Living in NYC and working in crypto.
-                <br /> Love the Bills and <a href="https://www.instagram.com/nycwingtrail/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">chicken wings</a>
+                <br /> Love the Bills and <a href="https://www.instagram.com/nycwingtrail/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">chicken wings</a>
                 .<br />
                 Spend my free time exploring restaurants, traveling, and trying new beers.
               </p>
@@ -103,9 +103,9 @@ export default function Home() {
           <section className="mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4 dark:text-white">Experiences</h2>
             <div className="space-y-2 text-base sm:text-lg text-gray-600 dark:text-gray-300">
-              <p>Currently cooking on prediction markets with <a href="https://www.competi.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Competi</a>.</p>
-              <p>Got into crypto working with <a href="https://npcgroup.xyz/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">NPC Group</a> (Polygon Labs)
-                and <a href="https://bharvest.io/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">B-Harvest</a>.</p>
+              <p>Currently cooking on prediction markets with <a href="https://www.competi.com/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Competi</a>.</p>
+              <p>Got into crypto working with <a href="https://npcgroup.xyz/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">NPC Group</a> (Polygon Labs)
+                and <a href="https://bharvest.io/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">B-Harvest</a>.</p>
               <p>Before crypto was on product teams at AMEX and Apple.</p>
               <p>Learned how to have fun at Cornell University.</p>
             </div>
