@@ -40,12 +40,14 @@ export default function SpotifyNowPlaying() {
       });
 
       if (response.status === 204) {
-        setIsTransitioning(true);
-        setTimeout(() => {
-          setTrack(null);
-          setError('Nothing playing right now');
-          setIsTransitioning(false);
-        }, 500);
+        // Keep the previous track if available, otherwise show error
+        if (!track) {
+          setIsTransitioning(true);
+          setTimeout(() => {
+            setError('Nothing playing right now');
+            setIsTransitioning(false);
+          }, 500);
+        }
       } else {
         const data = await response.json();
         if (data.error) {
@@ -57,7 +59,8 @@ export default function SpotifyNowPlaying() {
           }, 500);
         } else {
           setTrack(prevTrack => {
-            if (!prevTrack || !data.item || prevTrack.item.name !== data.item.name) {
+            // Always update if we have new data, even if it's the same track (to update is_playing status)
+            if (!prevTrack || !data.item || prevTrack.item.name !== data.item.name || prevTrack.is_playing !== data.is_playing) {
               setIsTransitioning(true);
               setTimeout(() => {
                 setIsTransitioning(false);
@@ -145,9 +148,15 @@ export default function SpotifyNowPlaying() {
             </p>
           </div>
           <div className="flex-shrink-0">
-            <svg className="w-3 h-3 text-green-500 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-              <circle cx="12" cy="12" r="8" />
-            </svg>
+            {track.is_playing ? (
+              <svg className="w-3 h-3 text-green-500 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="8" />
+              </svg>
+            ) : (
+              <svg className="w-3 h-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
+            )}
           </div>
         </a>
       ) : null}

@@ -7,6 +7,7 @@ const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
+const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=1`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 const getAccessToken = async () => {
@@ -90,6 +91,33 @@ export async function GET() {
     });
 
     if (response.status === 204) {
+      // Nothing is currently playing, fetch the most recently played track
+      const recentlyPlayedResponse = await fetch(RECENTLY_PLAYED_ENDPOINT, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+        cache: 'no-store',
+        next: { revalidate: 0 },
+      });
+
+      if (recentlyPlayedResponse.ok) {
+        const recentlyPlayedData = await recentlyPlayedResponse.json();
+        if (recentlyPlayedData.items && recentlyPlayedData.items.length > 0) {
+          // Format the recently played track to match the currently-playing format
+          const recentTrack = recentlyPlayedData.items[0].track;
+          const formattedData = {
+            item: recentTrack,
+            is_playing: false,
+            progress_ms: 0,
+            timestamp: recentlyPlayedData.items[0].played_at,
+          };
+          return NextResponse.json(formattedData, {
+            headers: responseHeaders,
+          });
+        }
+      }
+
+      // If we can't get recently played, return 204
       return new NextResponse(null, {
         status: 204,
         headers: responseHeaders,
