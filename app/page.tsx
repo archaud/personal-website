@@ -103,11 +103,12 @@ export default function Home() {
           <section className="mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4 dark:text-white">Experiences</h2>
             <div className="space-y-2 text-base sm:text-lg text-gray-600 dark:text-gray-300">
-              <p>Currently cooking on prediction markets with <a href="https://www.competi.com/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Competi</a>.</p>
+              <p>Redefining restaurant discovery with <a href="https://www.yourpalate.app/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Palate</a>.</p>
+              <p>Cooking on prediction markets with <a href="https://www.competi.com/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Competi</a>.</p>
               <p>Got into crypto working with <a href="https://npcgroup.xyz/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">NPC Group</a> (Polygon Labs)
                 and <a href="https://bharvest.io/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">B-Harvest</a>.</p>
               <p>Before crypto was on product teams at AMEX and Apple.</p>
-              <p>Learned how to have fun at Cornell University.</p>
+              <p>Had a blast at Cornell University.</p>
             </div>
           </section>
 
