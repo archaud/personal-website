@@ -74,7 +74,7 @@ export default function Home() {
               {/* Header section with title and description */}
               <header className="mb-8 sm:mb-16">
                 <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-600 dark:text-gray-400">Hi, I'm Arun</h1>
-                <p className="text-base sm:text-lg text-gray-400 dark:text-gray-500 italic">lets chat: <a href="mailto:chaudhuri.arunabh@gmail.com" className="underline hover:no-underline">email</a> / <a href="https://calendly.com/arun-npcgroup/30min" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">find time</a> / <a href="/images/Arun_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">resume</a></p>
+                <p className="text-base sm:text-lg text-gray-400 dark:text-gray-500 italic">lets chat: <a href="mailto:chaudhuri.arunabh@gmail.com" className="underline hover:no-underline">email</a> / <a href="https://calendly.com/arun-npcgroup/30min" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">find time</a> / <a href="/images/Arun_Chaudhuri_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">resume</a></p>
               </header>
             </div>
             <div className="transition-opacity duration-500 ease-in-out" style={{ opacity: isMounted ? 1 : 0 }}>
