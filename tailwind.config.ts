@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"SF Pro Display"', 'system-ui', 'sans-serif'],
+        mono: ['"Courier New"', 'Courier', 'monospace'],
       },
     },
   },
-  darkMode: 'media',
+  darkMode: 'class',
   plugins: [],
 }
-export default config 
+export default config

@@ -8,17 +8,10 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        // We can keep the default Tailwind colors by not overriding them
-      },
       fontFamily: {
-        'space-grotesk': ['var(--font-space-grotesk)', 'sans-serif'],
+        mono: ['"Courier New"', 'Courier', 'monospace'],
       },
     },
   },
   plugins: [],
-  safelist: [
-    'text-orange-500',
-    'text-orange-600'
-  ]
 };

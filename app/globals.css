@@ -4,92 +4,146 @@
 
 @layer base {
   html {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  /* Add smooth theme transition */
-  *,
-  *::before,
-  *::after {
-    transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out, color 0.5s ease-in-out;
-  }
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Receipt paper */
+.receipt {
+  background: #fefefe;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Torn/zigzag bottom edge */
+.receipt::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(135deg, #fefefe 33.33%, transparent 33.33%) 0 0,
+              linear-gradient(225deg, #fefefe 33.33%, transparent 33.33%) 0 0;
+  background-size: 10px 10px;
+  background-position: top left;
 }
 
+/* Dark mode receipt */
+.dark .receipt {
+  background: #1a1a1a;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .receipt::after {
+  background: linear-gradient(135deg, #1a1a1a 33.33%, transparent 33.33%) 0 0,
+              linear-gradient(225deg, #1a1a1a 33.33%, transparent 33.33%) 0 0;
+  background-size: 10px 10px;
+  background-position: top left;
+}
+
+/* Dashed divider */
+.receipt-divider {
+  border: none;
+  border-top: 1px dashed #333;
+  margin: 1rem 0;
+}
+
+.dark .receipt-divider {
+  border-top-color: #666;
+}
+
+/* Dotted leader between item and value */
+.receipt-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.receipt-line .leader {
+  flex: 1;
+  border-bottom: 1px dotted #999;
+  margin: 0 4px;
+  min-width: 20px;
+  position: relative;
+  top: -3px;
+}
+
+.dark .receipt-line .leader {
+  border-bottom-color: #555;
+}
+
+/* Barcode */
+.barcode {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1px;
+  height: 50px;
+  margin: 1rem auto;
+  width: 200px;
+}
+
+.barcode .bar {
+  background: #000;
+  width: 2px;
+}
+
+.dark .barcode .bar {
+  background: #ccc;
+}
+
+/* Fade in animation */
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .animate-fade-in {
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Substack article card styles */
-.substack-article-card {
-  border: 1px solid rgb(229 231 235);
-  border-radius: 0.5rem;
-  padding: 1rem;
-  background-color: white;
-  transition: transform 0.2s, box-shadow 0.2s;
+/* Print receipt animation */
+@keyframes printReceipt {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    max-height: 3000px;
+    opacity: 1;
+  }
 }
 
-.dark .substack-article-card {
-  border-color: rgb(55 65 81);
-  background-color: rgb(31 41 55);
+.receipt-print {
+  animation: printReceipt 1.5s ease-out forwards;
+  overflow: hidden;
 }
 
-.substack-article-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+/* Receipt text colors */
+.receipt {
+  color: #1a1a1a;
 }
 
-.substack-embed-wrapper .substack-post-embed {
-  font-size: 0.875rem;
-  line-height: 1.5;
+.dark .receipt {
+  color: #e0e0e0;
 }
 
-.substack-embed-wrapper .substack-post-embed p {
-  margin-bottom: 0.5rem;
-  color: rgb(55 65 75);
-}
-
-.dark .substack-embed-wrapper .substack-post-embed p {
-  color: rgb(209 213 219);
-}
-
-.substack-embed-wrapper .substack-post-embed a {
-  font-size: 0.75rem;
-  color: rgb(59 130 246);
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
-.dark .substack-embed-wrapper .substack-post-embed a {
-  color: rgb(96 165 250);
-}
-
-.substack-embed-wrapper .substack-post-embed a:hover {
+/* Links */
+.receipt a {
+  color: inherit;
   text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.receipt a:hover {
+  text-decoration: none;
 }

@@ -23,9 +23,7 @@ export default function SpotifyNowPlaying() {
   const [track, setTrack] = useState<SpotifyTrack | null>(null);
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [timeAgo, setTimeAgo] = useState<number>(0);
 
   const fetchNowPlaying = useCallback(async () => {
     try {
@@ -40,7 +38,6 @@ export default function SpotifyNowPlaying() {
       });
 
       if (response.status === 204) {
-        // Keep the previous track if available, otherwise show error
         if (!track) {
           setIsTransitioning(true);
           setTimeout(() => {
@@ -51,7 +48,6 @@ export default function SpotifyNowPlaying() {
       } else {
         const data = await response.json();
         if (data.error) {
-          console.error('Spotify API error:', data.error);
           setIsTransitioning(true);
           setTimeout(() => {
             setError(data.error.message);
@@ -59,7 +55,6 @@ export default function SpotifyNowPlaying() {
           }, 500);
         } else {
           setTrack(prevTrack => {
-            // Always update if we have new data, even if it's the same track (to update is_playing status)
             if (!prevTrack || !data.item || prevTrack.item.name !== data.item.name || prevTrack.is_playing !== data.is_playing) {
               setIsTransitioning(true);
               setTimeout(() => {
@@ -81,7 +76,6 @@ export default function SpotifyNowPlaying() {
       }, 500);
     } finally {
       setLoading(false);
-      setLastUpdated(new Date());
     }
   }, []);
 
@@ -91,75 +85,29 @@ export default function SpotifyNowPlaying() {
     return () => clearInterval(interval);
   }, [fetchNowPlaying]);
 
-  useEffect(() => {
-    if (!lastUpdated) return;
-
-    const updateTimeAgo = () => {
-      const seconds = Math.floor((new Date().getTime() - lastUpdated.getTime()) / 1000);
-      setTimeAgo(seconds);
-    };
-
-    updateTimeAgo();
-    const interval = setInterval(updateTimeAgo, 1000);
-    return () => clearInterval(interval);
-  }, [lastUpdated]);
-
   if (loading && !track) {
     return (
-      <div className="animate-pulse flex items-center space-x-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
-        <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
-        <div className="flex-1 space-y-1">
-          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-          <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
-        </div>
-      </div>
+      <div className="text-xs opacity-50">Loading...</div>
     );
   }
 
   return (
-    <div className={`transition-opacity duration-500 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
       {error && !track ? (
-        <div className="flex items-center space-x-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
-          <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-          </svg>
-          <span className="text-xs text-gray-500 dark:text-gray-400">{error}</span>
-        </div>
+        <span className="text-xs opacity-50">{error}</span>
       ) : track?.item ? (
         <a
           href={track.item.external_urls.spotify}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center space-x-2 p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-500 ease-in-out"
+          className="block"
         >
-          {track.item.album.images[0] && (
-            <img
-              src={track.item.album.images[0].url}
-              alt={`${track.item.album.name} album art`}
-              className="w-10 h-10 rounded shadow-sm"
-            />
-          )}
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-gray-900 dark:text-white truncate">
-              {track.item.name}
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-              {track.item.artists.map(artist => artist.name).join(', ')}
-            </p>
-          </div>
-          <div className="flex-shrink-0">
-            {track.is_playing ? (
-              <svg className="w-3 h-3 text-green-500 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-                <circle cx="12" cy="12" r="8" />
-              </svg>
-            ) : (
-              <svg className="w-3 h-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-              </svg>
-            )}
-          </div>
+          <span className="text-xs">
+            {track.is_playing ? '> ' : '  '}
+            {track.item.name} - {track.item.artists.map(a => a.name).join(', ')}
+          </span>
         </a>
       ) : null}
     </div>
   );
-} 
+}
